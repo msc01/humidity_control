@@ -7,7 +7,7 @@ require_relative '../lib/humidity_control'
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = 'Usage: humidity_control [options]'
+  opts.banner << 'Usage: humidity_control [options]'
 
   options[:format] = 'text'
   opts.on('-h', '--help', 'Display this screen') do
@@ -16,23 +16,20 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-# ---
-# Programm laeuft endlos
-# - Sensor abfragen
-# - auswerten
-# - melden
+config = Config.new
+
 loop do
+  message = "ESP32-FC37@#{config.url_sensor} "
   begin
-    sensor = Sensor.new
-  rescue
-    Alert.new message: "Something's wrong", level: :alarm
+    sensor = Sensor.new(config: config)
+  rescue StandardError => errormsg
+    message << 'Something went wrong!'
+    Alert.new message: message, level: :alarm
+    LOGGER.warn message << "\n#{errormsg}"
+    redo
   end
-  LOGGER.debug "Sensor reading ist #{sensor.reading}."
-  case sensor.reading
-  when 'dry'
-    Alert.new message: "Everything's ok", level: :info
-  else
-    Alert.new message: "Humidity sensor is #{sensor.reading}", level: :alarm
-  end
+  message << ": Reading is #{sensor.reading}."
+  LOGGER.info message
+  Alert.new(message: message, level: :alarm) unless sensor.reading == 'dry'
   sleep 10
 end

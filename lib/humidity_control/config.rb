@@ -4,8 +4,12 @@ class Config
   attr_reader :account_sid
   # Twilio configuration: authorization token ("password")
   attr_reader :auth_token
-  # Phone configuration: sender phone number
+  # Phone configuration: sender's phone number
   attr_reader :phone_nbr_from
+  # Phone configuration: receiver's phone number
+  attr_reader :phone_nbr_to
+  # Sensor configuration: URL
+  attr_reader :url_sensor
 
   def initialize(config_file = ENV['HUMIDITY-CONTROL_CONFIG_FILE'] || 'data/.humidity_control.config')
     @config_file = config_file
@@ -16,8 +20,10 @@ class Config
 
   def get_config_attributes_from(configuration)
     @phone_nbr_from = configuration['phone_nbr_from']
+    @phone_nbr_to = configuration['phone_nbr_to']
     @auth_token = configuration['auth_token']
     @account_sid = configuration['account_sid']
+    @url_sensor = configuration['url_sensor']
   end
 
   def config_data

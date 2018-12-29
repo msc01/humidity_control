@@ -5,7 +5,6 @@ require_relative 'test_helper'
 # Test class for Minitest Unit Tests
 class SensorTest < Minitest::Test
   def setup
-    # wird einmal zum Start ausgefuehrt
     @sensor = Sensor.new
   end
 

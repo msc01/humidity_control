@@ -16,4 +16,4 @@ require_relative 'humidity_control/version'
 # Sets the loglevel
 LOGGER = Logger.new(STDERR)
 LOGGER.progname = 'humidityControl'
-LOGGER.level = Logger::DEBUG # DEBUG, INFO, WARN
+LOGGER.level = Logger::INFO # DEBUG, INFO, WARN

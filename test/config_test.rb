@@ -31,4 +31,12 @@ class ConfigTest < Minitest::Test
   def test_that_phone_nbr_from_exists
     assert Config.new.phone_nbr_from
   end
+
+  def test_that_phone_nbr_to_exists
+    assert Config.new.phone_nbr_to
+  end
+
+  def test_that_url_sensor_exists
+    assert Config.new.url_sensor
+  end
 end

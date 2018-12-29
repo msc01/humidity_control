@@ -2,9 +2,10 @@
 class Sensor
   attr_reader :reading
 
-  def initialize
-    url = 'http://192.168.178.222'
-    response = HTTParty.get(url, headers: { 'Accept' => 'application/json' })
+  def initialize(config: Config.new)
+    @config = config
+
+    response = HTTParty.get(@config.url_sensor, headers: { 'Accept' => 'application/json' })
     @reading = response.parsed_response['ESP32']['sensor']['interpretation']
   end
 end

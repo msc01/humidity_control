@@ -14,17 +14,17 @@ class Alert
   end
 
   def alarm
-    phone_nbr_to = '+491711408561'
-
     client = Twilio::REST::Client.new @config.account_sid, @config.auth_token
     client.messages.create(
       from: @config.phone_nbr_from,
-      to: phone_nbr_to,
+      to: @config.phone_nbr_to,
       body: @message
     )
 
     puts "Alarm: #{@message}"
     `say 'Alarm'`
+  rescue StandardError => errormsg
+    LOGGER.warn "Warning: Message probably not send!\nMessage: #{@message}\nError: #{errormsg}!"
   end
 
   def info
