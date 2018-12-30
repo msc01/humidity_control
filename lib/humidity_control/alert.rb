@@ -24,7 +24,7 @@ class Alert
     puts "Alarm: #{@message}"
     `say 'Alarm'`
   rescue StandardError => errormsg
-    LOGGER.warn "Warning: Message probably not send!\nMessage: #{@message}\nError: #{errormsg}!"
+    LOGGER.warn "Warning: Message probably not sent!\nMessage: #{@message}\nError: #{errormsg}!"
   end
 
   def info
