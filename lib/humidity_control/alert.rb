@@ -25,6 +25,7 @@ class Alert
     `say 'Alarm'`
   rescue StandardError => errormsg
     LOGGER.warn "Warning: Message probably not sent!\nMessage: #{@message}\nError: #{errormsg}!"
+    # TODO: rescue IOError; redo;
   end
 
   def info
