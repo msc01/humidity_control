@@ -1,4 +1,5 @@
 # Versioning information:
 # - v0.0.1: Initial version.
 # - v0.0.2: Improves output and logging format.
-VERSION = '0.0.2'.freeze
+# - v0.0.3: Deployed and tested in production.
+VERSION = '0.0.3'.freeze

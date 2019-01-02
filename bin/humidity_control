@@ -3,6 +3,12 @@
 # ---
 # bin/humidity_control -- Ruby "executable" for monitoring humidity sensors
 # ---
+# TODO: 
+# [ ] Deploy and test in production
+# [ ] Daily info SMS update
+# [ ] Phone call for alarm
+# [ ] How to handle repeat alarming?
+# ---
 require_relative '../lib/humidity_control'
 
 options = {}
