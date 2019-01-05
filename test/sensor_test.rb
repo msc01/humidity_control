@@ -12,6 +12,10 @@ class SensorTest < Minitest::Test
     refute_nil VERSION
   end
 
+  def test_that_url_matches
+    assert_equal 'http://192.168.178.222', @sensor.url
+  end
+
   def test_that_sensor_has_a_reading
     refute_nil @sensor.reading
   end

@@ -22,7 +22,6 @@ class Alert
     )
 
     puts "Alarm: #{@message}"
-    # `say 'Alarm'` command not running on production iMac
   rescue StandardError => errormsg
     LOGGER.warn "Warning: Message probably not sent!\nMessage: #{@message}\nError: #{errormsg}!"
     # TODO: rescue IOError; redo;

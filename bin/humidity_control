@@ -22,20 +22,20 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-config = Config.new
+sensor = Sensor.new(config: Config.new)
 
 loop do
-  message = "ESP32-FC37@#{config.url_sensor} = "
+  message = "ESP32-FC37@#{sensor.url} = "
   begin
-    sensor = Sensor.new(config: config)
+    reading = sensor.reading
   rescue StandardError => errormsg
     message << 'Something went wrong!'
     Alert.new message: message, level: :alarm
     LOGGER.warn message << "\n#{errormsg}"
     redo
   end
-  message << "Reading is #{sensor.reading}."
+  message << "Reading is #{reading}."
   LOGGER.info message
-  Alert.new(message: message, level: :alarm) unless sensor.reading == 'dry'
+  Alert.new(message: message, level: :alarm) unless reading == 'dry'
   sleep 10
 end

@@ -10,6 +10,8 @@ class Config
   attr_reader :phone_nbr_to
   # Sensor configuration: URL
   attr_reader :url_sensor
+  # Sensor configuration: Number of retries for trying to access services
+  attr_reader :retries
 
   def initialize(config_file = ENV['HUMIDITY-CONTROL_CONFIG_FILE'] || 'data/.humidity_control.config')
     @config_file = config_file
@@ -24,6 +26,7 @@ class Config
     @auth_token = configuration['auth_token']
     @account_sid = configuration['account_sid']
     @url_sensor = configuration['url_sensor']
+    @retries = configuration['url_sensor']
   end
 
   def config_data

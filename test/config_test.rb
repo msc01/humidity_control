@@ -39,4 +39,8 @@ class ConfigTest < Minitest::Test
   def test_that_url_sensor_exists
     assert Config.new.url_sensor
   end
+
+  def test_that_retries_exists
+    assert Config.new.retries
+  end
 end
