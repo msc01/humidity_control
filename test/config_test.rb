@@ -28,6 +28,10 @@ class ConfigTest < Minitest::Test
     assert config.instance_of?(Config)
   end
 
+  def test_that_environment_exists
+    assert Config.new.environment
+  end
+
   def test_that_phone_nbr_from_exists
     assert Config.new.phone_nbr_from
   end

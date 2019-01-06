@@ -1,5 +1,7 @@
 # Handles external configuration data and makes each configuration parameter accessible as an attribut.
 class Config
+  # Humidity Control: Environment
+  attr_reader :environment
   # Twilio configuration: account
   attr_reader :account_sid
   # Twilio configuration: authorization token ("password")
@@ -21,12 +23,13 @@ class Config
   private
 
   def get_config_attributes_from(configuration)
+    @environment = configuration['environment']
     @phone_nbr_from = configuration['phone_nbr_from']
     @phone_nbr_to = configuration['phone_nbr_to']
     @auth_token = configuration['auth_token']
     @account_sid = configuration['account_sid']
     @url_sensor = configuration['url_sensor']
-    @retries = configuration['url_sensor']
+    @retries = configuration['retries']
   end
 
   def config_data

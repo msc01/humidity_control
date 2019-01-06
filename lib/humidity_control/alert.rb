@@ -23,7 +23,7 @@ class Alert
 
     puts "Alarm: #{@message}"
   rescue StandardError => errormsg
-    LOGGER.warn "Warning: Message probably not sent!\nMessage: #{@message}\nError: #{errormsg}!"
+    LOGGER.warn "Message probably not sent!\nMessage: #{@message}\nError: #{errormsg}!"
     # TODO: rescue IOError; redo;
   end
 

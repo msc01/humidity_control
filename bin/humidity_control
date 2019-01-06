@@ -4,7 +4,6 @@
 # bin/humidity_control -- Ruby "executable" for monitoring humidity sensors
 # ---
 # TODO:
-# [ ] Deploy and test in production
 # [ ] Daily info SMS update
 # [ ] Phone call for alarm
 # [ ] How to handle repeat alarming?
@@ -22,17 +21,17 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-sensor = Sensor.new(config: Config.new)
+config = Config.new
+LOGGER.info "Environment: #{config.environment}"
+sensor = Sensor.new(config: config)
 
 loop do
-  message = "ESP32-FC37@#{sensor.url} = "
+  message = "ESP32-FC37@#{config.url_sensor} = "
   begin
     reading = sensor.reading
   rescue StandardError => errormsg
-    message << 'Something went wrong!'
-    Alert.new message: message, level: :alarm
-    LOGGER.warn message << "\n#{errormsg}"
-    redo
+    message << "Something went wrong!\n#{errormsg}"
+    reading = 'unknown'
   end
   message << "Reading is #{reading}."
   LOGGER.info message
