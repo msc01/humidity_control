@@ -21,7 +21,7 @@ class Sensor
     rescue StandardError => errormsg
       raise unless (retries += 1) <= @config.retries
 
-      LOGGER.warn "Error while trying to read from #{@config.url_sensor}!\n#{errormsg}\nRetrying in #{retries} second..."
+      LOGGER.warn "Error while trying to read from #{@config.url_sensor}!\n#{errormsg}\nRetrying in #{retries} second(s)..."
       sleep(retries)
       retry
     end

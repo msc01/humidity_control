@@ -6,7 +6,7 @@
 # TODO:
 # [ ] Daily info SMS update
 # [ ] Phone call for alarm
-# [ ] How to handle repeat alarming?
+# [ ] How to handle repeated alarming?
 # ---
 require_relative '../lib/humidity_control'
 
@@ -29,11 +29,11 @@ loop do
   begin
     reading = sensor.reading
   rescue StandardError => errormsg
-    message << "Something went wrong!\n#{errormsg}"
+    message << "Something went wrong!\n#{errormsg}\n"
     reading = 'unknown'
   end
   message << "Reading is #{reading}."
   LOGGER.info message
-  Alert.new(message: message, level: :alarm) unless reading == 'dry'
+  Alert.new(message: message, level: :alarm, config: config) unless reading == 'dry'
   sleep 10
 end
