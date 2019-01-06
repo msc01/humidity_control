@@ -5,5 +5,5 @@
 # - v0.0.4: Improves error handling.
 # - v0.0.5: Furter improves error handling.
 # - v0.0.6: Introduces Mountebank for imposters and stubs.
-# - v0.0.7: Addsc environment to config.
+# - v0.0.7: Adds environment to config.
 VERSION = '0.0.7'.freeze
