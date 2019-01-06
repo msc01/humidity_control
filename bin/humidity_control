@@ -22,7 +22,6 @@ OptionParser.new do |opts|
 end.parse!
 
 config = Config.new
-LOGGER.info "Environment: #{config.environment}"
 sensor = Sensor.new(config: config)
 
 loop do
