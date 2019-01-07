@@ -2,16 +2,15 @@
 
 require_relative 'test_helper'
 
-# Test class for Minitest Unit Tests
+# === Test class for Minitest Unit Tests
 class SensorTest < Minitest::Test
   MOUNTEBANK_ADDRESS = 'http://localhost:2525/imposters/'.freeze
 
+  # --- Preparation and setup
+  #     Assumes that [Mountebank][http://www.mbtest.org] is up an running
   def mountebank
-    # Assumes that [Mountebank][http://www.mbtest.org] is up an running
-    # ---
     # First, delete any old imposters
     mountebank_delete
-
     # Then, setup imposter needed for testing
     mountebank_setup
   end
@@ -34,17 +33,18 @@ class SensorTest < Minitest::Test
     raise
   end
 
+  # --- Actual Tests
   def test_that_it_has_a_version_number
     refute_nil VERSION
   end
 
   def test_that_stub_http_response_matches_interface
-    http_response = <<~HEREDOC
-      '{"ESP32": {"status": {"uptime": "1", "LED_builtin": "off"}, "sensor": {"type": "FC37", "value": "4095", "interpretation": "dry"}}}'
+    expected_http_response = JSON.parse <<~HEREDOC
+      {"ESP32": {"status": {"uptime": "1", "LED_builtin": "off"}, "sensor": {"type": "FC37", "value": "4095", "interpretation": "dry"}}}
     HEREDOC
     mountebank
-    sensor = Sensor.new(config: Config.new('test/humidity_control_test.config'))
-    assert_equal http_response, sensor.response
+    actual_response = Sensor.new(config: Config.new('test/humidity_control_test.config')).response.parsed_response
+    assert_equal expected_http_response, actual_response
   end
 
   def test_that_stub_sensor_has_a_reading

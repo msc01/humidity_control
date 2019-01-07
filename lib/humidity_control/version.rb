@@ -7,4 +7,5 @@
 # - v0.0.6: Introduces Mountebank for imposters and stubs.
 # - v0.0.7: Adds environment to config.
 # - v0.0.8: Improves & updates Readme.
-VERSION = '0.0.8'.freeze
+# - v0.0.9: Improves sensor tests.
+VERSION = '0.0.9'.freeze
