@@ -1,1 +1,0 @@
-{"port": 1000, "protocol": "http", "name": "ESP32-FC37", "stubs": [{"predicates": [{"equals": {"method": "GET", "path": "/"}}], "responses": [{"is": {"statusCode": 200, "headers": {"Content-Type": "application/json"}, "body": {"ESP32": {"status": {"uptime": "1", "LED_builtin": "off"}, "sensor": {"type": "FC37", "value": "4095", "interpretation": "dry"}}}}}]}]}

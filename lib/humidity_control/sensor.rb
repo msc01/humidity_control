@@ -6,13 +6,10 @@ class Sensor
 
   def reading
     response.parsed_response['ESP32']['sensor']['interpretation']
-    # TODO: Parse more fields from ESP32
   rescue StandardError => errormsg
     LOGGER.warn "Couldn't read or parse from #{@config.url_sensor}!\n#{errormsg}"
     raise
   end
-
-  private
 
   def response
     retries = 0

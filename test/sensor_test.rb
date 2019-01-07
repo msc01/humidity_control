@@ -38,13 +38,22 @@ class SensorTest < Minitest::Test
     refute_nil VERSION
   end
 
-  def test_that_sensor_has_a_reading
+  def test_that_stub_http_response_matches_interface
+    http_response = <<~HEREDOC
+      '{"ESP32": {"status": {"uptime": "1", "LED_builtin": "off"}, "sensor": {"type": "FC37", "value": "4095", "interpretation": "dry"}}}'
+    HEREDOC
+    mountebank
+    sensor = Sensor.new(config: Config.new('test/humidity_control_test.config'))
+    assert_equal http_response, sensor.response
+  end
+
+  def test_that_stub_sensor_has_a_reading
     mountebank
     sensor = Sensor.new(config: Config.new('test/humidity_control_test.config'))
     refute_nil sensor.reading
   end
 
-  def test_that_sensor_is_dry
+  def test_that_stub_sensor_is_dry
     mountebank
     sensor = Sensor.new(config: Config.new('test/humidity_control_test.config'))
     assert_equal 'dry', sensor.reading
