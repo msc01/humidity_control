@@ -8,4 +8,5 @@
 # - v0.0.7: Adds environment to config.
 # - v0.0.8: Improves & updates Readme.
 # - v0.0.9: Improves sensor tests.
-VERSION = '0.0.9'.freeze
+# - v0.1.0: First production release.
+VERSION = '0.1.0'.freeze
