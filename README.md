@@ -31,7 +31,7 @@ Needs a YAML configuration file with the following format / content:
     url_sensor: 'http://localhost:1000'
     retries: 3
 
-It either looks for it in `/data/.humidity_control.config` or as specified by the environment variable `CONFIG_FILE`.
+It either looks for it in `/data/.config` or as specified by the environment variable `HUMIDITY_CONTROL_CONFIG_FILE`.
 
 ## TODO
 

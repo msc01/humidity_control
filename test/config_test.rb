@@ -8,23 +8,23 @@ class ConfigTest < Minitest::Test
   end
 
   def test_that_it_works_with_default_config_file
-    ENV['HUMIDITY-CONTROL_CONFIG_FILE'] = nil
+    ENV['HUMIDITY_CONTROL_CONFIG_FILE'] = nil
     config = Config.new
     assert config.instance_of?(Config)
   end
 
   def test_that_it_does_not_work_without_a_config_file
-    assert_raises(Errno::ENOENT) { Config.new('data/humidity_control_test.not_config') }
+    assert_raises(Errno::ENOENT) { Config.new('data/no.config') }
   end
 
   def test_that_it_works_with_config_file_via_environment_variable
-    ENV['HUMIDITY-CONTROL_CONFIG_FILE'] = 'test/humidity_control_test.config'
+    ENV['HUMIDITY_CONTROL_CONFIG_FILE'] = 'test/test.config'
     config = Config.new
     assert config.instance_of?(Config)
   end
 
   def test_that_it_works_with_config_file_via_argument
-    config = Config.new('test/humidity_control_test.config')
+    config = Config.new('test/test.config')
     assert config.instance_of?(Config)
   end
 

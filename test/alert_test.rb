@@ -9,7 +9,7 @@ class AlertTest < Minitest::Test
   end
 
   def test_alarm
-    Alert.new message: 'Alarm', level: :alarm, config: Config.new('test/humidity_control_test.config')
+    Alert.new message: 'Alarm', level: :alarm, config: Config.new('test/test.config')
   end
 
   def test_info

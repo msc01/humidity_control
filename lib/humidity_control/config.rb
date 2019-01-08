@@ -15,7 +15,7 @@ class Config
   # Sensor configuration: Number of retries for trying to access services
   attr_reader :retries
 
-  def initialize(config_file = ENV['HUMIDITY-CONTROL_CONFIG_FILE'] || 'data/.humidity_control.config')
+  def initialize(config_file = ENV['HUMIDITY_CONTROL_CONFIG_FILE'] || 'data/.config')
     @config_file = config_file
     get_config_attributes_from config_data
     LOGGER.debug "Configuration file = #{@config_file}"

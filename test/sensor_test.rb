@@ -43,25 +43,35 @@ class SensorTest < Minitest::Test
       {"ESP32": {"status": {"uptime": "1", "LED_builtin": "off"}, "sensor": {"type": "FC37", "value": "4095", "interpretation": "dry"}}}
     HEREDOC
     mountebank
-    actual_response = Sensor.new(config: Config.new('test/humidity_control_test.config')).response.parsed_response
+    actual_response = Sensor.new(config: Config.new('test/test.config')).response.parsed_response
+
     assert_equal expected_http_response, actual_response
   end
 
   def test_that_stub_sensor_has_a_reading
     mountebank
-    sensor = Sensor.new(config: Config.new('test/humidity_control_test.config'))
+    sensor = Sensor.new(config: Config.new('test/test.config'))
+    sensor.read
+
     refute_nil sensor.reading
   end
 
-  def test_that_stub_sensor_is_dry
+  def test_that_stub_sensor_data_is_right
     mountebank
-    sensor = Sensor.new(config: Config.new('test/humidity_control_test.config'))
+    sensor = Sensor.new(config: Config.new('test/test.config'))
+    sensor.read
+
+    assert_equal 'FC37', sensor.type
+    assert_equal '1', sensor.uptime
+    assert_equal 'off', sensor.builtin_led
+    assert_equal '4095', sensor.value
     assert_equal 'dry', sensor.reading
   end
 
   def test_that_rescuing_works
     mountebank_delete
-    sensor = Sensor.new(config: Config.new('test/humidity_control_test.config'))
-    assert_raises(StandardError) { sensor.reading }
+    sensor = Sensor.new(config: Config.new('test/test.config'))
+
+    assert_raises(StandardError) { sensor.read }
   end
 end

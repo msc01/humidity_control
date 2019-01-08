@@ -20,15 +20,14 @@ config = Config.new
 sensor = Sensor.new(config: config)
 
 loop do
-  message = "ESP32-FC37@#{config.url_sensor} = "
   begin
-    reading = sensor.reading
+    sensor.read
+    message = "ESP32-#{sensor.type}@#{config.url_sensor} Uptime = #{sensor.uptime} – "
   rescue StandardError => errormsg
-    message << "Something went wrong!\n#{errormsg}\n"
-    reading = 'unknown'
+    message << "\nSomething went wrong!\n#{errormsg}\n"
   end
-  message << "Reading is #{reading}."
+  message << "Reading is #{sensor.reading}."
   LOGGER.info message
-  Alert.new(message: message, level: :alarm, config: config) unless reading == 'dry'
+  Alert.new(message: message, level: :alarm, config: config) unless sensor.reading == 'dry'
   sleep 10
 end

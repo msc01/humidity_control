@@ -9,4 +9,5 @@
 # - v0.0.8: Improves & updates Readme.
 # - v0.0.9: Improves sensor tests.
 # - v0.1.0: First production release.
-VERSION = '0.1.0'.freeze
+# - v0.1.1: Retrieves more fields from a sensor.
+VERSION = '0.1.1'.freeze
