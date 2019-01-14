@@ -1,9 +1,10 @@
 # Represents a humidty sensor
 class Sensor
-  attr_reader :type, :uptime, :builtin_led, :value, :reading
+  attr_reader :type, :uptime, :builtin_led, :value, :reading, :warnings
 
   def initialize(config: Config.new)
     @config = config
+    @warnings = 0
     initialize_attributes
   end
 
@@ -11,6 +12,7 @@ class Sensor
     parse_attributes response.parsed_response['ESP32']
   rescue StandardError => errormsg
     LOGGER.warn "Couldn't read or parse from #{@config.url_sensor}!\n#{errormsg}"
+    @warnings += 1
     raise
   end
 
@@ -23,6 +25,7 @@ class Sensor
       raise unless (retries += 1) <= @config.retries
 
       LOGGER.warn "Error while trying to read from #{@config.url_sensor}!\n#{errormsg}\nRetrying in #{retries} second(s)..."
+      @warnings += 1
       sleep(retries)
       retry
     end

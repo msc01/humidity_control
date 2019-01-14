@@ -8,3 +8,4 @@ require 'minitest/autorun'
 require 'minitest/pride'
 
 require_relative '../lib/humidity_control'
+require_relative 'mountebank'
