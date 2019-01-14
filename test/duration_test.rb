@@ -7,6 +7,6 @@ class DurationTest < Minitest::Test
   include Duration
 
   def test_duration
-    assert_equal '1 days, 1 hours, 1 minutes and 1 seconds', beautify(90_061)
+    assert_equal '1 d 1:1:1', beautify(90_061)
   end
 end

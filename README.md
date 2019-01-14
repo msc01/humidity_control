@@ -42,4 +42,5 @@ Following points need to be taken care of:
   * Phone call for alarm
   * How to handle repeated alarming?
   * Rescue IOError and redo while alerting
+  * Overwrite LOGGER.warn with @warnings += 1?
   
