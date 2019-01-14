@@ -10,8 +10,11 @@ require 'yaml'
 
 require_relative 'humidity_control/alert'
 require_relative 'humidity_control/config'
+require_relative 'humidity_control/duration'
 require_relative 'humidity_control/sensor'
 require_relative 'humidity_control/version'
+
+include Duration
 
 # Sets the loglevel
 LOGGER = Logger.new(STDERR)

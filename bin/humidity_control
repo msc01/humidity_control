@@ -26,7 +26,7 @@ loop do
   rescue StandardError => errormsg
     message << "\nSomething went wrong!\n#{errormsg}\n"
   end
-  message << "Type #{sensor.type} - Uptime = #{sensor.uptime} – Reading is #{sensor.reading}."
+  message << "Type #{sensor.type} - Uptime = #{beautify sensor.uptime} – Reading is #{sensor.reading}."
   LOGGER.info message
   Alert.new(message: message, level: :alarm, config: config) unless sensor.reading == 'dry'
   sleep 10

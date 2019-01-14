@@ -10,4 +10,5 @@
 # - v0.0.9: Improves sensor tests.
 # - v0.1.0: First production release.
 # - v0.1.1: Retrieves more fields from a sensor.
-VERSION = '0.1.1'.freeze
+# - v0.1.2: Optimizes output of uptime.
+VERSION = '0.1.2'.freeze
