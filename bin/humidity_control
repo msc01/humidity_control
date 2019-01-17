@@ -7,11 +7,12 @@ require_relative '../lib/humidity_control'
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner << 'Usage: humidity_control [options]'
+  opts.banner = 'Usage: humidity_control [options]'
 
   options[:format] = 'text'
   opts.on('-h', '--help', 'Display this screen') do
     puts opts
+    puts 'Configuration file either /data/.config or as specified by the environment variable HUMIDITY_CONTROL_CONFIG_FILE.'
     exit
   end
 end.parse!

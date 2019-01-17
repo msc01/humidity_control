@@ -5,7 +5,7 @@ class Sensor
   def initialize(config: Config.new)
     @config = config
     @warnings = 0
-    initialize_attributes
+    clear_attributes
   end
 
   def read
@@ -17,8 +17,8 @@ class Sensor
   end
 
   def response
+    clear_attributes
     retries = 0
-    initialize_attributes
     begin
       HTTParty.get(@config.url_sensor, headers: { 'Accept' => 'application/json' })
     rescue StandardError => errormsg
@@ -31,7 +31,9 @@ class Sensor
     end
   end
 
-  def initialize_attributes
+  private
+
+  def clear_attributes
     @type = 'unknown'
     @uptime = 0
     @builtin_led = 'unknown'
