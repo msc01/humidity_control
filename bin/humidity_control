@@ -12,7 +12,7 @@ OptionParser.new do |opts|
   options[:format] = 'text'
   opts.on('-h', '--help', 'Display this screen') do
     puts opts
-    puts 'Configuration file either /data/.config or as specified by the environment variable HUMIDITY_CONTROL_CONFIG_FILE.'
+    puts "\nConfiguration: either in /data/.config (2) or environment variable HUMIDITY_CONTROL_CONFIG_FILE (1).\n"
     exit
   end
 end.parse!
