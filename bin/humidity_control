@@ -34,5 +34,6 @@ loop do
   message << "– Warnings = #{sensor.warnings} – Reading is #{sensor.reading}."
   LOGGER.info message
   Alert.new(message: message, level: :alarm, config: config) unless sensor.reading == 'dry'
+  Alert.new(message: message, level: :info, config: config) if sensor.new_day?
   sleep 10
 end

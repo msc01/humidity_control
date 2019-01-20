@@ -47,4 +47,12 @@ class SensorTest < Minitest::Test
 
     assert_raises(StandardError) { sensor.read }
   end
+
+  def test_new_day
+    mountebank
+    sensor = Sensor.new(config: Config.new('test/test.config'))
+
+    assert_equal false, sensor.new_day?
+    
+  end
 end
