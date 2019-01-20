@@ -13,7 +13,7 @@ class Sensor
     begin
       parse_attributes response.parsed_response['ESP32']
     rescue StandardError => errormsg
-      LOGGER.warn "Couldn't read or parse from #{@config.url_sensor}!\n#{errormsg}"
+      LOGGER.warn "Couldn't read or parse from #{@config.sensor_url}!\n#{errormsg}"
       @warnings += 1
       raise
     end
@@ -24,11 +24,11 @@ class Sensor
     clear_attributes
     retries = 0
     begin
-      HTTParty.get(@config.url_sensor, headers: { 'Accept' => 'application/json' })
+      HTTParty.get(@config.sensor_url, headers: { 'Accept' => 'application/json' })
     rescue StandardError => errormsg
       raise unless (retries += 1) <= @config.retries
 
-      LOGGER.warn "Error while trying to read from #{@config.url_sensor}!\n#{errormsg}\nRetrying in #{retries} second(s)..."
+      LOGGER.warn "Error while trying to read from #{@config.sensor_url}!\n#{errormsg}\nRetrying in #{retries} second(s)..."
       @warnings += 1
       sleep(retries)
       retry

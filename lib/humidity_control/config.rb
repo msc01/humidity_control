@@ -10,8 +10,10 @@ class Config
   attr_reader :phone_nbr_from
   # Phone configuration: receiver's phone number
   attr_reader :phone_nbr_to
+  # URL of TWIML BIN for message text to say during calls
+  attr_reader :twiml_bin_message_url
   # Sensor configuration: URL
-  attr_reader :url_sensor
+  attr_reader :sensor_url
   # Sensor configuration: Number of retries for trying to access services
   attr_reader :retries
 
@@ -30,7 +32,8 @@ class Config
     @phone_nbr_to = configuration['phone_nbr_to']
     @auth_token = configuration['auth_token']
     @account_sid = configuration['account_sid']
-    @url_sensor = configuration['url_sensor']
+    @twiml_bin_message_url = configuration['twiml_bin_message_url']
+    @sensor_url = configuration['sensor_url']
     @retries = configuration['retries']
   end
 
