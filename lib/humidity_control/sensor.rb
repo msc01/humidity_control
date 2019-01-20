@@ -5,15 +5,19 @@ class Sensor
   def initialize(config: Config.new)
     @config = config
     @warnings = 0
+    @day_of_creation = Time.now.day
     clear_attributes
   end
 
   def read
-    parse_attributes response.parsed_response['ESP32']
-  rescue StandardError => errormsg
-    LOGGER.warn "Couldn't read or parse from #{@config.url_sensor}!\n#{errormsg}"
-    @warnings += 1
-    raise
+    begin
+      parse_attributes response.parsed_response['ESP32']
+    rescue StandardError => errormsg
+      LOGGER.warn "Couldn't read or parse from #{@config.url_sensor}!\n#{errormsg}"
+      @warnings += 1
+      raise
+    end
+    Alert.new(message: 'Daily update', level: :info, config: @config) if new_day?
   end
 
   def response
@@ -47,5 +51,12 @@ class Sensor
     @builtin_led = esp32['status']['LED_builtin']
     @value = esp32['sensor']['value']
     @reading = esp32['sensor']['interpretation']
+  end
+
+  def new_day?
+    return false if @day_of_creation == Time.now.day
+
+    @day_of_creation = Time.now.day
+    true
   end
 end

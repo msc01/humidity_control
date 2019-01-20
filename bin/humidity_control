@@ -7,12 +7,15 @@ require_relative '../lib/humidity_control'
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = 'Usage: humidity_control [options]'
+  opts.banner = "\nHumidity Control (c) Michael Schwarze, 2019.\n\n"
+  opts.banner << '  Usage: humidity_control [options]'
 
   options[:format] = 'text'
   opts.on('-h', '--help', 'Display this screen') do
     puts opts
-    puts "\nConfiguration: either in /data/.config (2) or environment variable HUMIDITY_CONTROL_CONFIG_FILE (1).\n"
+    puts "\n  Configuration:"
+    puts '    (1) file as specified in environment variable HUMIDITY_CONTROL_CONFIG_FILE (1),'
+    puts '    (2) /data/.config (2).'
     exit
   end
 end.parse!
@@ -27,9 +30,8 @@ loop do
   rescue StandardError => errormsg
     message << "\nSomething went wrong!\n#{errormsg}\n"
   end
-  message << <<~TEXT
-    - Type #{sensor.type} - Uptime = #{beautify sensor.uptime} – Warnings = #{sensor.warnings} – Reading is #{sensor.reading}.
-  TEXT
+  message << "- Type #{sensor.type} - Uptime = #{beautify sensor.uptime} "
+  message << "– Warnings = #{sensor.warnings} – Reading is #{sensor.reading}."
   LOGGER.info message
   Alert.new(message: message, level: :alarm, config: config) unless sensor.reading == 'dry'
   sleep 10
