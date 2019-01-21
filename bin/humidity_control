@@ -7,7 +7,7 @@ require_relative '../lib/humidity_control'
 
 options = {}
 OptionParser.new do |opts|
-  opts.banner = "\nHumidity Control (c) Michael Schwarze, 2019.\n\n"
+  opts.banner = "\nHumidity Control #{VERSION} (c) Michael Schwarze, 2019.\n\n"
   opts.banner << '  Usage: humidity_control [options]'
 
   options[:format] = 'text'

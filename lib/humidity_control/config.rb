@@ -21,7 +21,7 @@ class Config
     @config_file = config_file
     get_config_attributes_from config_data
     LOGGER.debug "Configuration file = #{@config_file}"
-    LOGGER.info "Environment = #{@environment}"
+    LOGGER.info "Environment = #{@environment} – Version = #{VERSION}"
   end
 
   private
