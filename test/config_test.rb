@@ -44,7 +44,15 @@ class ConfigTest < Minitest::Test
     assert Config.new.sensor_url
   end
 
-  def test_that_retries_exists
-    assert Config.new.retries
+  def test_that_nbr_of_retries_exists
+    assert Config.new.nbr_of_retries
+  end
+
+  def test_that_twiml_bin_message_url_exists
+    assert Config.new.twiml_bin_message_url
+  end
+
+  def test_that_repeat_alarm_pause_exists
+    assert Config.new.repeat_alarm_pause
   end
 end

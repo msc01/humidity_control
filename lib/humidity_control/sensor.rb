@@ -19,15 +19,15 @@ class Sensor
 
   def response
     clear_attributes
-    retries = 0
+    nbr_of_retries = 0
     begin
       HTTParty.get(@config.sensor_url, headers: { 'Accept' => 'application/json' })
     rescue StandardError => errormsg
-      raise unless (retries += 1) <= @config.retries
+      raise unless (nbr_of_retries += 1) <= @config.nbr_of_retries
 
-      LOGGER.warn "Error while trying to read from #{@config.sensor_url}!\n#{errormsg}\nRetrying in #{retries} second(s)..."
+      LOGGER.warn "Error while trying to read from #{@config.sensor_url}!\n#{errormsg}\nRetrying in #{nbr_of_retries} second(s)..."
       @warnings += 1
-      sleep(retries)
+      sleep(nbr_of_retries)
       retry
     end
   end

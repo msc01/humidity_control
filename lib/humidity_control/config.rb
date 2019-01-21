@@ -15,7 +15,9 @@ class Config
   # Sensor configuration: URL
   attr_reader :sensor_url
   # Sensor configuration: Number of retries for trying to access services
-  attr_reader :retries
+  attr_reader :nbr_of_retries
+  # Seconds to suspend alerting after sending an alarm to stop repeat alarming
+  attr_reader :repeat_alarm_pause
 
   def initialize(config_file = ENV['HUMIDITY_CONTROL_CONFIG_FILE'] || 'data/.config')
     @config_file = config_file
@@ -34,7 +36,8 @@ class Config
     @account_sid = configuration['account_sid']
     @twiml_bin_message_url = configuration['twiml_bin_message_url']
     @sensor_url = configuration['sensor_url']
-    @retries = configuration['retries']
+    @nbr_of_retries = configuration['nbr_of_retries']
+    @repeat_alarm_pause = configuration['repeat_alarm_pause']
   end
 
   def config_data
