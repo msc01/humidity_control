@@ -37,7 +37,6 @@ It either looks for it in `/data/.config` or as specified by the environment var
 
 Following points need to be taken care of:
 
-* How to handle repeated alarming?
 * Alert to mulitple phone nbrs.
 * Rescue IOError and redo while alerting
 * Overwrite LOGGER.warn with @warnings += 1?

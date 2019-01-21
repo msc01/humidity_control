@@ -11,5 +11,6 @@
 # - v0.1.0: First production release.
 # - v0.1.1: Retrieves more fields from a sensor.
 # - v0.1.2: Optimizes output of uptime.
-# - v0.1.3: Daily info SMS update
-VERSION = '0.1.3'.freeze
+# - v0.1.3: Send daily info SMS update
+# - v0.1.4: Send an info SMS after each alarm and pause for 15 minutes.
+VERSION = '0.1.4'.freeze
