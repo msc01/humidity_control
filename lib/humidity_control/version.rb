@@ -11,4 +11,5 @@
 # - v0.1.0: First production release.
 # - v0.1.1: Retrieves more fields from a sensor.
 # - v0.1.2: Optimizes output of uptime.
-VERSION = '0.1.2'.freeze
+# - v0.1.3: Daily info SMS update
+VERSION = '0.1.3'.freeze
