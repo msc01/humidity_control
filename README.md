@@ -30,6 +30,7 @@ Needs a YAML configuration file with the following format / content:
     auth_token: <Your Twilio Authorization Token>
     sensor_url: 'http://localhost:1000'
     nbr_of_retries: 3
+    repeat_alarm_pause: 3
 
 It either looks for it in `/data/.config` or as specified by the environment variable `HUMIDITY_CONTROL_CONFIG_FILE`.
 
