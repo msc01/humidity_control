@@ -30,7 +30,7 @@ class Alert
     client.calls.create(
       from: @config.phone_nbr_from,
       to: @config.phone_nbr_to,
-      url: @config.twiml_bin_message_url + @message.tr(' ', '+')
+      url: @config.twiml_bin_message_url + @message.gsub(/[ @:–+-\/\=]/, '_').tr_s('_', '+')
     )
   rescue StandardError => errormsg
     LOGGER.warn "Message probably not sent!\nMessage: #{@message}\nError: #{errormsg}!"
