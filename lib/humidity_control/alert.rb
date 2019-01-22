@@ -32,10 +32,9 @@ class Alert
       from: @config.phone_nbr_from,
       to: @config.phone_nbr_to,
       url: @config.twiml_bin_message_url + 'Achtung+Alarm+Wasser+ist+im+Heizungskeller'
-      # @message.gsub(/[ @:–+-\/\=]/, '_').tr_s('_', '+')
     )
     info # Send an additional info
-    LOGGER.info "Waiting #{@config.repeat_alarm_pause / 60} minutes after an alarm..."
+    LOGGER.info "Alarm was sent. Waiting #{@config.repeat_alarm_pause / 60} minutes..."
     sleep @config.repeat_alarm_pause
   rescue StandardError => errormsg
     LOGGER.warn "Message probably not sent!\nMessage: #{@message}\nError: #{errormsg}!"
