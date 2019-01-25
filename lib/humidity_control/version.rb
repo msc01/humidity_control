@@ -13,4 +13,5 @@
 # - v0.1.2: Optimizes output of uptime.
 # - v0.1.3: Send daily info SMS update
 # - v0.1.4: Send an info SMS after each alarm and pause for 15 minutes.
-VERSION = '0.1.4'.freeze
+# - v0.1.5: Work with multiple to_phone_nbrs
+VERSION = '0.1.5'.freeze

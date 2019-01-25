@@ -6,8 +6,14 @@ Monitors humidity sensors.
 
 ## Synopsis
 
-    humidity_control [options]
-    -h, --help              Shows this information.
+    Humidity Control 0.1.4 (c) Michael Schwarze, 2019.
+
+    Usage: humidity_control [options]
+      -h, --help                       Display this screen
+
+    Configuration:
+    - (1) file as specified by environment variable HUMIDITY_CONTROL_CONFIG_FILE,
+    - (2) /data/.config.
 
 ## Description
 
@@ -25,7 +31,7 @@ Needs a YAML configuration file with the following format / content:
     ---
     environment: 'TEST'
     phone_nbr_from: '+123456789'
-    phone_nbr_to: '+987654321'
+    phone_nbr_to: ['+987654321', '+87654321']
     account_sid: <Your Twilio Account SID>
     auth_token: <Your Twilio Authorization Token>
     sensor_url: 'http://localhost:1000'
@@ -38,7 +44,7 @@ It either looks for it in `/data/.config` or as specified by the environment var
 
 Following points need to be taken care of:
 
-* Alert to mulitple phone nbrs.
+* Optimize / seperate output: a) humidity control (program), b) ESP32 (sensor)
 * Rescue IOError and redo while alerting
 * Overwrite LOGGER.warn with @warnings += 1?
   
