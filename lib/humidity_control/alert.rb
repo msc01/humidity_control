@@ -11,7 +11,7 @@ class Alert
     end
     return unless @level == :alarm
 
-    LOGGER.info "Waiting #{@config.repeat_alarm_pause / 60} minutes after an alarm..."
+    LOGGER.info "Alarm: Waiting #{@config.repeat_alarm_pause / 60} minutes after an alarm..."
     sleep @config.repeat_alarm_pause
   end
 
@@ -26,7 +26,7 @@ class Alert
   rescue StandardError => errormsg
     LOGGER.warn "Message probably not sent!\nReceiver: #{receiver}\nMessage: #{@message}\nError: #{errormsg}!"
   else
-    LOGGER.info "Info: #{@message} was sent to #{receiver}."
+    LOGGER.info "Info: was sent to #{receiver}."
   end
 
   # Makes a call via Twilio
@@ -35,7 +35,7 @@ class Alert
     client.calls.create(
       from: @config.phone_nbr_from,
       to: receiver,
-      url: @config.twiml_bin_message_url + 'Achtung+Alarm+Wasser+ist+im+Heizungskeller'
+      url: @config.twiml_bin_message_url + 'Attention+There+is+water+in+the+boiler+room'
     )
   rescue StandardError => errormsg
     LOGGER.warn "Call probably not made!\nReceiver: #{receiver}\nMessage: #{@message}\nError: #{errormsg}!"

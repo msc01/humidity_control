@@ -47,4 +47,5 @@ Following points need to be taken care of:
 * Optimize / seperate output: a) humidity control (program), b) ESP32 (sensor)
 * Rescue IOError and redo while alerting
 * Overwrite LOGGER.warn with @warnings += 1?
+* Handle multiple sensors
   
