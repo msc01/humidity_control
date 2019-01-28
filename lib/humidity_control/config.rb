@@ -12,8 +12,10 @@ class Config
   attr_reader :phone_nbr_to
   # URL of TWIML BIN for message text to say during calls
   attr_reader :twiml_bin_message_url
-  # Sensor configuration: URL
-  attr_reader :sensor_url
+  # Sensor configuration: URL internal net
+  attr_reader :sensor_url_internal
+  # Sensor configuration: URL external net
+  attr_reader :sensor_url_external
   # Sensor configuration: Number of retries for trying to access services
   attr_reader :nbr_of_retries
   # Seconds to suspend alerting after sending an alarm to stop repeat alarming
@@ -35,7 +37,8 @@ class Config
     @auth_token = configuration['auth_token']
     @account_sid = configuration['account_sid']
     @twiml_bin_message_url = configuration['twiml_bin_message_url']
-    @sensor_url = configuration['sensor_url']
+    @sensor_url_internal = configuration['sensor_url_internal']
+    @sensor_url_external = configuration['sensor_url_external']
     @nbr_of_retries = configuration['nbr_of_retries']
     @repeat_alarm_pause = configuration['repeat_alarm_pause']
   end

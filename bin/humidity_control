@@ -24,7 +24,7 @@ config = Config.new
 sensor = Sensor.new(config: config)
 
 loop do
-  message = "ESP32@#{config.sensor_url} "
+  message = "ESP32@#{config.sensor_url_internal}+#{config.sensor_url_external} "
   begin
     sensor.read
   rescue StandardError => errormsg

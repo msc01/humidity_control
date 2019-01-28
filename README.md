@@ -34,7 +34,8 @@ Needs a YAML configuration file with the following format / content:
     phone_nbr_to: ['+987654321', '+87654321']
     account_sid: <Your Twilio Account SID>
     auth_token: <Your Twilio Authorization Token>
-    sensor_url: 'http://localhost:1000'
+    sensor_url_internal: 'http://localhost:1000'
+    sensor_url_external: 'http://localhost:1000'
     nbr_of_retries: 3
     repeat_alarm_pause: 3
 

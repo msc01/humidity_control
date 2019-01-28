@@ -12,7 +12,7 @@ class Sensor
   def read
     parse_attributes response.parsed_response['ESP32']
   rescue StandardError => errormsg
-    LOGGER.warn "Couldn't read or parse from #{@config.sensor_url}!\n#{errormsg}"
+    LOGGER.warn "Couldn't read or parse from #{@config.sensor_url_internal}!\n#{errormsg}"
     @warnings += 1
     raise
   end
@@ -20,11 +20,11 @@ class Sensor
   def response
     clear_attributes
     begin
-      HTTParty.get(@config.sensor_url, headers: { 'Accept' => 'application/json' })
+      HTTParty.get(@config.sensor_url_internal, headers: { 'Accept' => 'application/json' })
     rescue StandardError => errormsg
       raise unless (@nbr_of_retries += 1) <= @config.nbr_of_retries
 
-      LOGGER.warn "Error while trying to read from #{@config.sensor_url}!\n#{errormsg}\nRetrying in #{@nbr_of_retries} second(s)..."
+      LOGGER.warn "Error while trying to read #{@config.sensor_url_internal}!\n#{errormsg}\nRetrying in #{@nbr_of_retries} s..."
       pause
       retry
     end

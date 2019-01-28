@@ -11,7 +11,7 @@ class Alert
     end
     return unless @level == :alarm
 
-    LOGGER.info "Alarm: Waiting #{@config.repeat_alarm_pause / 60} minutes after an alarm..."
+    LOGGER.info "Info: Waiting #{@config.repeat_alarm_pause / 60} minutes after an alarm..."
     sleep @config.repeat_alarm_pause
   end
 
