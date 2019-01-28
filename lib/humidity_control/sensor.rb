@@ -19,15 +19,13 @@ class Sensor
 
   def response
     clear_attributes
-    nbr_of_retries = 0
     begin
       HTTParty.get(@config.sensor_url, headers: { 'Accept' => 'application/json' })
     rescue StandardError => errormsg
-      raise unless (nbr_of_retries += 1) <= @config.nbr_of_retries
+      raise unless (@nbr_of_retries += 1) <= @config.nbr_of_retries
 
-      LOGGER.warn "Error while trying to read from #{@config.sensor_url}!\n#{errormsg}\nRetrying in #{nbr_of_retries} second(s)..."
-      @warnings += 1
-      sleep(nbr_of_retries)
+      LOGGER.warn "Error while trying to read from #{@config.sensor_url}!\n#{errormsg}\nRetrying in #{@nbr_of_retries} second(s)..."
+      pause
       retry
     end
   end
@@ -47,6 +45,7 @@ class Sensor
     @builtin_led = 'unknown'
     @value = 0
     @reading = 'unknown'
+    @nbr_of_retries = 0
   end
 
   def parse_attributes(esp32)
@@ -55,5 +54,10 @@ class Sensor
     @builtin_led = esp32['status']['LED_builtin']
     @value = esp32['sensor']['value']
     @reading = esp32['sensor']['interpretation']
+  end
+
+  def pause
+    @warnings += 1
+    sleep(@nbr_of_retries)
   end
 end
