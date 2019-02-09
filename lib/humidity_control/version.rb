@@ -15,4 +15,5 @@
 # - v0.1.4: Send an info SMS after each alarm and pause for 15 minutes.
 # - v0.1.5: Work with multiple to_phone_nbrs
 # - v0.1.6: Enhance logging and speech.
-VERSION = '0.1.6'.freeze
+# - v0.1.7: Switch daily info SMS from midnight to noon.
+VERSION = '0.1.7'.freeze
