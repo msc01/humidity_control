@@ -37,3 +37,7 @@ loop do
   Alert.new(message: message, level: :info, config: config) if sensor.new_day?
   sleep 15
 end
+
+def noon?
+  true
+end

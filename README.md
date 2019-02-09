@@ -45,6 +45,7 @@ It either looks for it in `/data/.config` or as specified by the environment var
 
 Following points need to be taken care of:
 
+* Status SMS at noon, not midnight.
 * Optimize / seperate output: a) humidity control (program), b) ESP32 (sensor)
 * Handle multiple sensors
 * Rescue IOError and redo while alerting
