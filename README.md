@@ -6,8 +6,6 @@ Monitors humidity sensors.
 
 ## Synopsis
 
-    Humidity Control 0.1.4 (c) Michael Schwarze, 2019.
-
     Usage: humidity_control [options]
       -h, --help                       Display this screen
 
@@ -23,23 +21,7 @@ Monitors an ESP32 microcontroller which provides humidity data given by an FC37 
 
 ## Configuration
 
-Needs a YAML configuration file with the following format / content:
-
-    ##
-    # Humidity Control's configuration file
-    ##
-    ---
-    environment: 'TEST'
-    phone_nbr_from: '+123456789'
-    phone_nbr_to: ['+987654321', '+87654321']
-    account_sid: <Your Twilio Account SID>
-    auth_token: <Your Twilio Authorization Token>
-    sensor_url_internal: 'http://localhost:1000'
-    sensor_url_external: 'http://localhost:1000'
-    nbr_of_retries: 3
-    repeat_alarm_pause: 3
-
-It either looks for it in `/data/.config` or as specified by the environment variable `HUMIDITY_CONTROL_CONFIG_FILE`.
+Needs a YAML configuration file either in `/data/.config` or as specified by the environment variable `HUMIDITY_CONTROL_CONFIG_FILE`.
 
 ## TODO
 
