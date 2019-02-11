@@ -28,7 +28,6 @@ Needs a YAML configuration file either in `/data/.config` or as specified by the
 Following points need to be taken care of:
 
 * Update config: Time to send status SMS
-* Class Ready2SendStatusSMS
 * Optimize / seperate output: a) humidity control (program), b) ESP32 (sensor)
 * Handle multiple sensors
 * Rescue IOError and redo while alerting

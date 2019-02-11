@@ -5,7 +5,6 @@ class Sensor
   def initialize(config: Config.new)
     @config = config
     @warnings = 0
-    @day_of_creation = Time.now.day
     clear_attributes
   end
 
@@ -30,11 +29,11 @@ class Sensor
     end
   end
 
-  def new_day?
-    return false if @day_of_creation == Time.now.day
+  def ready_for_status_update?
+    current_time = Time.now
+    return true if current_time.hour == 12 && current_time.zero? && current_time.sec < 25
 
-    @day_of_creation = Time.now.day
-    true
+    false
   end
 
   private
