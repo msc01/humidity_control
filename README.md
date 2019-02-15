@@ -27,7 +27,7 @@ Needs a YAML configuration file either in `/data/.config` or as specified by the
 
 Following points need to be taken care of:
 
-* No call when not an emergency (!)
+* If sensor is up after being not available, sent status update
 * Update config: Time to send status SMS
 * Optimize / seperate output: a) humidity control (program), b) ESP32 (sensor)
 * Handle multiple sensors
