@@ -1,7 +1,7 @@
 # Represents an alert
 class Alert
   def initialize(message:, level:, config: Config.new)
-    @message = message
+    @message = "#{level}: #{message}"
     @level = level
     @config = config
 
@@ -11,7 +11,7 @@ class Alert
     end
     return unless @level == :alarm
 
-    LOGGER.info "Info: Waiting #{@config.repeat_alarm_pause / 60} minutes after an alarm..."
+    LOGGER.info "Waiting #{@config.repeat_alarm_pause / 60} minutes after an alarm..."
     sleep @config.repeat_alarm_pause
   end
 
@@ -26,7 +26,7 @@ class Alert
   rescue StandardError => errormsg
     LOGGER.warn "Message probably not sent!\nReceiver: #{receiver}\nMessage: #{@message}\nError: #{errormsg}!"
   else
-    LOGGER.info "Info: was sent to #{receiver}."
+    LOGGER.info "Message sent to #{receiver}."
   end
 
   # Makes a call via Twilio
@@ -35,11 +35,11 @@ class Alert
     client.calls.create(
       from: @config.phone_nbr_from,
       to: receiver,
-      url: @config.twiml_bin_message_url + 'Attention+There+is+water+in+the+boiler+room'
+      url: @config.twiml_bin_message_url + @message.tr(' ', '+')
     )
   rescue StandardError => errormsg
     LOGGER.warn "Call probably not made!\nReceiver: #{receiver}\nMessage: #{@message}\nError: #{errormsg}!"
   else
-    LOGGER.info "Alarm: #{receiver} called."
+    LOGGER.info "#{receiver} called."
   end
 end

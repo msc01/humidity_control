@@ -33,7 +33,13 @@ loop do
   message << "- Type #{sensor.type} - Uptime = #{beautify sensor.uptime} "
   message << "– Warnings = #{sensor.warnings} – Reading is #{sensor.reading}."
   LOGGER.info message
-  Alert.new(message: message, level: :alarm, config: config) unless sensor.reading == 'dry'
+  unless sensor.reading == ''
+    if sensor.reading == 'unknown'
+      Alert.new(message: message, level: :info, config: config)
+    else
+      Alert.new(message: 'Wasser ist im Heizungskeller', level: :alarm, config: config) unless sensor.reading == 'dry'
+    end
+  end
   Alert.new(message: message, level: :info, config: config) if sensor.ready_for_status_update?
   sleep 15
 end
