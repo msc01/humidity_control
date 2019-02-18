@@ -52,6 +52,10 @@ class SensorTest < Minitest::Test
     mountebank
     sensor = Sensor.new(config: Config.new('test/test.config'))
 
-    assert_equal false, sensor.ready_for_status_update?
+    test_time = Time.new(2019, 2, 18, 2, 2, 2)
+    assert_equal false, sensor.ready_for_status_update?(test_time)
+
+    test_time = Time.new(2019, 2, 18, 12, 0, 0)
+    assert_equal true, sensor.ready_for_status_update?(test_time)
   end
 end

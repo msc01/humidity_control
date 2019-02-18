@@ -16,4 +16,5 @@
 # - v0.1.5: Work with multiple to_phone_nbrs
 # - v0.1.6: Enhance logging and speech.
 # - v0.1.7: Switch daily info SMS from midnight to noon.
-VERSION = '0.1.7'.freeze
+# - v0.1.8: Refactor Sensor/Test: Inject current_time annd add tests to #ready_for_status_update?.
+VERSION = '0.1.8'.freeze
