@@ -18,3 +18,4 @@
 # - v0.1.7: Switch daily info SMS from midnight to noon.
 # - v0.1.8: Refactor Sensor/Test: Inject current_time annd add tests to #ready_for_status_update?.
 VERSION = '0.1.8'.freeze
+VERSION_INFO = "Humidity Control v#{VERSION} (c) Michael Schwarze, 2019.".freeze
