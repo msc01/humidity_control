@@ -4,6 +4,6 @@ module Duration
     mm, ss = seconds.to_i.divmod(60)
     hh, mm = mm.divmod(60)
     dd, hh = hh.divmod(24)
-    "#{dd} d #{hh}:#{mm}:#{ss}"
+    "#{dd} Tagen, #{hh} Stunden #{mm} Minuten und #{ss} Sekunden"
   end
 end

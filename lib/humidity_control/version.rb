@@ -17,5 +17,6 @@
 # - v0.1.6: Enhance logging and speech.
 # - v0.1.7: Switch daily info SMS from midnight to noon.
 # - v0.1.8: Refactor Sensor/Test: Inject current_time annd add tests to #ready_for_status_update?.
-VERSION = '0.1.8'.freeze
+# - v0.1.9: Optimize / seperate output: a) humidity control (program), b) ESP32 (sensor).
+VERSION = '0.1.9'.freeze
 VERSION_INFO = "Humidity Control v#{VERSION} (c) Michael Schwarze, 2019.".freeze

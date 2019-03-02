@@ -29,7 +29,6 @@ Following points need to be taken care of:
 
 * If sensor is up after being not available, sent status update
 * Update config: Time to send status SMS
-* Optimize / seperate output: a) humidity control (program), b) ESP32 (sensor)
 * Handle multiple sensors
 * Rescue IOError and redo while alerting
 * Overwrite LOGGER.warn with @@warnings += 1?

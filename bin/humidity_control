@@ -30,14 +30,15 @@ config = Config.new
 sensor = Sensor.new(config: config)
 
 loop do
-  message = "ESP32@#{config.sensor_url_internal}+#{config.sensor_url_external} "
+  message = "Feuchtigkeitssensor #{config.sensor_url_external}. "
   begin
     sensor.read
   rescue StandardError => errormsg
-    message << "\nSomething went wrong!\n#{errormsg}\n"
+    message << 'konnte NICHT gelesen werden! '
+    LOGGER.warn errormsg
   end
-  message << "- Type #{sensor.type} - Uptime = #{beautify sensor.uptime} "
-  message << "– Warnings = #{sensor.warnings} – Reading is #{sensor.reading}."
+  message << "Der Sensor #{sensor.type} ist #{sensor.reading}. "
+  message << "Er läuft seit #{beautify sensor.uptime}. Das Programm hat #{sensor.warnings} Warnung(en)."
   LOGGER.info message
   unless sensor.reading == ''
     if sensor.reading == 'unknown'
