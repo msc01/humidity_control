@@ -30,7 +30,7 @@ class Sensor
   end
 
   def ready_for_status_update?(current_time = Time.now)
-    return true if current_time.hour == 12 && current_time.min.zero? && current_time.sec < 25
+    return true if current_time.hour == 12 && current_time.min.zero? && current_time.sec < 20
 
     false
   end
