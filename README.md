@@ -23,6 +23,12 @@ Monitors an ESP32 microcontroller which provides humidity data given by an FC37 
 
 Needs a YAML configuration file either in `/data/.config` or as specified by the environment variable `HUMIDITY_CONTROL_CONFIG_FILE`.
 
+## Example
+
+Start the control program in the background, write all output to logfile log.txt:
+
+    bin/humidity_control &> log.txt &
+
 ## TODO
 
 Following points need to be taken care of:
