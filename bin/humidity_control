@@ -30,15 +30,17 @@ config = Config.new
 sensor = Sensor.new(config: config)
 
 loop do
-  message = "Feuchtigkeitssensor #{config.sensor_url_external}. "
+  message = 'Feuchtigkeitssensor '
   begin
     sensor.read
   rescue StandardError => errormsg
     message << 'konnte NICHT gelesen werden! '
     LOGGER.warn errormsg
   end
-  message << "Der Sensor #{sensor.type} ist #{sensor.reading}. "
-  message << "Er läuft seit #{beautify sensor.uptime}. Das Programm hat #{sensor.warnings} Warnung(en)."
+  message << "#{sensor.type} ist »#{sensor.reading}« "
+  message << "und läuft seit #{beautify sensor.uptime}. "
+  message << "Der Sensor ist erreichbar unter #{config.sensor_url_external}. "
+  message "Das Programm #{$PROGRAM_NAME} hat #{sensor.warnings} Warnung(en)."
   LOGGER.info message
   unless sensor.reading == ''
     if sensor.reading == 'unknown'

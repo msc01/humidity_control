@@ -38,4 +38,3 @@ Following points need to be taken care of:
 * Handle multiple sensors
 * Rescue IOError and redo while alerting
 * Overwrite LOGGER.warn with @@warnings += 1?
-  
