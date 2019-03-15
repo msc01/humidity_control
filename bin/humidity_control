@@ -40,7 +40,7 @@ loop do
   message << "#{sensor.type} ist »#{sensor.reading}« "
   message << "und läuft seit #{beautify sensor.uptime}. "
   message << "Der Sensor ist erreichbar unter #{config.sensor_url_external}. "
-  message "Das Programm #{$PROGRAM_NAME} hat #{sensor.warnings} Warnung(en)."
+  message << "Das Programm #{$PROGRAM_NAME} hat #{sensor.warnings} Warnung(en)."
   LOGGER.info message
   unless sensor.reading == ''
     if sensor.reading == 'unknown'
