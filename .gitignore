@@ -3,3 +3,5 @@ test/coverage/
 doc/
 data/
 .DS_Store
+log.txt
+
