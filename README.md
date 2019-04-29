@@ -29,6 +29,10 @@ Start the control program in the background, write all output to logfile log.txt
 
     bin/humidity_control &> log.txt &
 
+Alternatively, using setsid to invoke the control program in the background without being connected to the process hierarchy, which is useful when being invoked from an ssh session:
+
+    setsid bin/humidity_control &> log.txt
+
 ## TODO
 
 Following points need to be taken care of:

@@ -22,7 +22,9 @@ OptionParser.new do |opts|
     puts "\n  Configuration:"
     puts '    - (1) file as specified by environment variable HUMIDITY_CONTROL_CONFIG_FILE,'
     puts '    - (2) /data/.config.'
-    puts "\n  Background processing: bin/humidity_control 2> log.txt &"
+    puts "\n  Background processing:"
+    puts '    - (1) bin/humidity_control 2> log.txt &'
+    puts '    - (2) setsid bin/humidity_control &> log.txt'
     puts
     exit
   end
