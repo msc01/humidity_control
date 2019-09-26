@@ -1,7 +1,5 @@
 # Humidity Control
 
-[![](https://codescene.io/projects/5634/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/5634/jobs/latest-successful/results)
-
 ## Summary
 
 Monitors humidity sensors.
