@@ -14,7 +14,7 @@ GEM
     mini_portile2 (2.4.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    nokogiri (1.10.5)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     twilio-ruby (5.29.1)
       faraday (~> 0.9)
